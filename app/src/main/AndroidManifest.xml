@@ -42,7 +42,7 @@
             android:name=".user.UserProfile"
             android:noHistory="true" />
         <activity android:name=".post.UserHome" />
-        <activity android:name=".post.UserPost"/>
+        <activity android:name=".post.UserPost" />
         <activity android:name=".post.PostDetails" />
         <activity android:name=".friend.FriendProfile" />
         <activity

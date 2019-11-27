@@ -55,7 +55,7 @@ class FriendAdd : AppCompatActivity() {
 
         FriendDataList.setOnItemClickListener {parent, view, position, id ->
 
-            friendId = view.findViewById<TextView>(R.id.UserId).text
+            //friendId = view.findViewById<TextView>(R.id.UserId).text
 
             FriendAd()
         }

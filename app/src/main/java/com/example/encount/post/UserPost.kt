@@ -18,8 +18,11 @@ import java.util.Date
 import android.os.AsyncTask
 import android.util.Log
 import android.widget.*
+import com.example.encount.R
+import com.example.encount.SQLiteHelper
 import com.example.encount.post.UserHome
 import com.example.encount.user.UserProfile
+import kotlinx.android.synthetic.main.activity_user_post.*
 import okhttp3.*
 import java.io.File
 import java.io.IOException
@@ -63,7 +66,7 @@ class UserPost : AppCompatActivity() {
         setContentView(R.layout.activity_user_post)
 
         //画面遷移用
-        val menuHomeBtn     = findViewById<LinearLayout>(R.id.MenuHome)
+        val menuHomeBtn = findViewById<LinearLayout>(R.id.MenuHome)
         val menuUserBtn = findViewById<LinearLayout>(R.id.MenuUser)
 
         /**
@@ -89,7 +92,7 @@ class UserPost : AppCompatActivity() {
          * 投稿ボタン押すと動作する
          */
         // 投稿ボタン、コメント取得
-        val postButton = findViewById<Button>(R.id.postButton)
+        //val postButton = findViewById<Button>(R.id.postButton)
         val commentInput = findViewById<EditText>(R.id.commentInput)
 
 
@@ -123,6 +126,7 @@ class UserPost : AppCompatActivity() {
         }
 
         //メニューバーを押した場合の処理
+        /*
         menuUserBtn.setOnClickListener {
 
             startActivity(Intent(this, UserProfile::class.java))
@@ -133,7 +137,7 @@ class UserPost : AppCompatActivity() {
 
             startActivity(Intent(this, UserHome::class.java))
             overridePendingTransition(0, 0)
-        }
+        }*/
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
