@@ -58,7 +58,8 @@ class MapsHome : FragmentActivity(), OnMapReadyCallback {
         mapFragment!!.getMapAsync(this)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        val locationRequest = LocationRequest()
+        //val locationRequest = LocationRequest()
+        val locationRequest = LocationRequest.create()
 
         //どれか一つを選択
         locationRequest.setPriority(
