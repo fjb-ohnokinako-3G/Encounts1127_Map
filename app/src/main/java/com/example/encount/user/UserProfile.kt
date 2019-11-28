@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import com.example.encount.*
+import com.example.encount.maps.MapsHome
 import com.example.encount.post.PostAdapter
 import com.example.encount.post.UserHome
 import com.google.gson.Gson
@@ -43,6 +44,7 @@ class UserProfile : AppCompatActivity() {
         val userFriendBtn   = findViewById<LinearLayout>(R.id.UserFriend)
         val userLikeBtn     = findViewById<LinearLayout>(R.id.UserLike)
         val menuHomeBtn     = findViewById<LinearLayout>(R.id.MenuHome)
+        val menuMapBtn = findViewById<LinearLayout>(R.id.MenuMap)
         val userSettingsBtn = findViewById<ImageView>(R.id.UserSettings)
 
         actFriend.visibility    = View.GONE
@@ -82,6 +84,12 @@ class UserProfile : AppCompatActivity() {
         menuHomeBtn.setOnClickListener {
 
             startActivity(Intent(this, UserHome::class.java))
+            overridePendingTransition(0, 0)
+        }
+
+        menuMapBtn.setOnClickListener {
+
+            startActivity(Intent(this, MapsHome::class.java))
             overridePendingTransition(0, 0)
         }
 
