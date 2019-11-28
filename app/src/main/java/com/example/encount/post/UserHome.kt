@@ -16,6 +16,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.IOException
 import com.example.encount.friend.FriendProfile
+import com.example.encount.maps.MapsHome
 import com.example.encount.user.UserProfile
 import java.lang.Exception
 
@@ -36,6 +37,7 @@ class UserHome : AppCompatActivity() {
         setContentView(R.layout.activity_user_home)
 
         val menuUserBtn = findViewById<LinearLayout>(R.id.MenuUser)
+        val menuMapBtn = findViewById<LinearLayout>(R.id.MenuMap)
 
         UserPostGet().execute()
 
@@ -80,6 +82,12 @@ class UserHome : AppCompatActivity() {
         menuUserBtn.setOnClickListener {
 
             startActivity(Intent(this, UserProfile::class.java))
+            overridePendingTransition(0, 0)
+        }
+
+        menuMapBtn.setOnClickListener {
+
+            startActivity(Intent(this, MapsHome::class.java))
             overridePendingTransition(0, 0)
         }
 

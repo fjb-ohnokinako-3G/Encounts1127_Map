@@ -3,13 +3,17 @@ package com.example.encount.maps
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentActivity
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.widget.LinearLayout
 import android.widget.Toast
 import com.example.encount.R
+import com.example.encount.post.UserHome
+import com.example.encount.user.UserProfile
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
@@ -34,6 +38,10 @@ class MapsHome : FragmentActivity(), OnMapReadyCallback {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps_home)
+
+        //画面遷移用
+        val menuHomeBtn = findViewById<LinearLayout>(R.id.MenuHome)
+        val menuUserBtn = findViewById<LinearLayout>(R.id.MenuUser)
 
         // Android 6, API 23以上でパーミッションの確認
         if (Build.VERSION.SDK_INT >= 23) {
@@ -61,6 +69,19 @@ class MapsHome : FragmentActivity(), OnMapReadyCallback {
         //              LocationRequest.PRIORITY_NO_POWER);               //位置情報取得をアプリが自ら測位しない
 
         getLastLocation()
+
+        //メニューバーを押した場合の処理
+        menuUserBtn.setOnClickListener {
+
+            startActivity(Intent(this, UserProfile::class.java))
+            overridePendingTransition(0, 0)
+        }
+
+        menuHomeBtn.setOnClickListener {
+
+            startActivity(Intent(this, UserHome::class.java))
+            overridePendingTransition(0, 0)
+        }
     }
 
     //最新の位置情報の取得(nullが返ってくる可能性)
