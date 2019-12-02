@@ -5,18 +5,17 @@ import androidx.fragment.app.FragmentActivity
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Location
+
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.LinearLayout
 import android.widget.Toast
+
 import com.example.encount.R
 import com.example.encount.post.UserHome
 import com.example.encount.user.UserProfile
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -24,15 +23,14 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 
 class MapsHome : FragmentActivity(), OnMapReadyCallback {
 
-    private var fusedLocationClient: FusedLocationProviderClient? = null
-    private var location: Location? = null
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var toast: Toast? = null //デバック用
     private var mMap: GoogleMap? = null
+    private val locationRequest = null
+    private val requestingLocationUpdates = true //フラグ
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -60,16 +58,11 @@ class MapsHome : FragmentActivity(), OnMapReadyCallback {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         //val locationRequest = LocationRequest()
         val locationRequest = LocationRequest.create()
+        locationRequest.setInterval(10000)   //最遅の更新間隔
+        locationRequest.setFastestInterval(5000)   //最速の更新間隔
+        locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)           //バッテリー消費を抑えたい場合、精度は100m程度
 
-        //どれか一つを選択
-        locationRequest.setPriority(
-            //              LocationRequest.PRIORITY_HIGH_ACCURACY);  //高精度の位置情報を取得
-            LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY
-        )  //バッテリー消費を抑えたい場合、精度は100m程度
-        //              LocationRequest.PRIORITY_LOW_POWER);              //バッテリー消費を抑えたい場合、精度は10km
-        //              LocationRequest.PRIORITY_NO_POWER);               //位置情報取得をアプリが自ら測位しない
 
-        getLastLocation()
 
         //メニューバーを押した場合の処理
         menuUserBtn.setOnClickListener {
@@ -83,37 +76,42 @@ class MapsHome : FragmentActivity(), OnMapReadyCallback {
             startActivity(Intent(this, UserHome::class.java))
             overridePendingTransition(0, 0)
         }
+        onResume()
     }
-
-    //最新の位置情報の取得(nullが返ってくる可能性)
-    fun getLastLocation() {
-        fusedLocationClient!!.getLastLocation().addOnCompleteListener(
-            this@MapsHome, OnCompleteListener<Location> {
-                fun onCompleteLisner(task: Task<Location>) {
-                    //アクセスが成功したら
-                    if (task.isSuccessful() && task.getResult() != null) {
-                        location = task.getResult()
-                        toast = Toast.makeText(
-                            this@MapsHome,
-                            "緯度" + location!!.latitude + "\n" + "経度" + location!!.longitude,
-                            Toast.LENGTH_LONG
-                        )
-                        //toast.show()
-                        Log.d("debug", "計測成功")
-                    }
-                    else {
-                        toast = Toast.makeText(this@MapsHome, "計測不能", Toast.LENGTH_LONG)
-                        //toast.show()
-                        Log.d("debug", "計測失敗")
-                    }
+    //反応なし
+    val locationCallback = object : LocationCallback() {
+        override fun onLocationResult(locationResult: LocationResult?) {
+            locationResult ?: return
+            for (location in locationResult.locations){
+                if (location != null){
+                    Log.d("debug","緯度" + location.longitude)
+                    Log.d("debug","経度" + location.latitude)
                 }
             }
-        )
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (requestingLocationUpdates) startLocationUpdates()
+    }
+
+    private fun startLocationUpdates() {
+        fusedLocationClient.requestLocationUpdates(locationRequest,
+            locationCallback, null /* Looper */)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        stopLocationUpdates()
+    }
+
+    private fun stopLocationUpdates() {
+        fusedLocationClient.removeLocationUpdates(locationCallback)
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        Log.d("debug", "計測開始")
         val spot = LatLng(35.7044997, 139.9843911)
         mMap!!.addMarker(
             MarkerOptions()
