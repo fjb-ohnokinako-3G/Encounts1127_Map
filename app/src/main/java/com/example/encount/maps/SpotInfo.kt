@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.encount.R
+import com.example.encount.post.UserHome
 import com.example.encount.user.UserProfile
 
 /**
@@ -14,16 +15,28 @@ import com.example.encount.user.UserProfile
 
 class SpotInfo  : AppCompatActivity() {
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps_spotinfo)
 
-
-        //val menuUserBtn = findViewById<LinearLayout>
+        //画面遷移用
+        val menuHomeBtn = findViewById<LinearLayout>(R.id.MenuHome)
+        val menuUserBtn = findViewById<LinearLayout>(R.id.MenuUser)
         val SpotPopular = findViewById<LinearLayout>(R.id.SpotPopular)
+
+        //メニューバーを押した場合の処理
+        menuUserBtn.setOnClickListener {
+
+            startActivity(Intent(this, UserProfile::class.java))
+            overridePendingTransition(0, 0)
+        }
+
+        menuHomeBtn.setOnClickListener {
+
+            startActivity(Intent(this, UserHome::class.java))
+            overridePendingTransition(0, 0)
+        }
 
         SpotPopular.setOnClickListener {
 
