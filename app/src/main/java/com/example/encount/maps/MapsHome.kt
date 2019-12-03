@@ -82,8 +82,8 @@ class MapsHome : FragmentActivity(), OnMapReadyCallback {
             locationResult ?: return
             for (location in locationResult.locations){
                 if (location != null){
-                    Log.d("debug","緯度" + location.longitude)
-                    Log.d("debug","経度" + location.latitude)
+                    Log.d("debug","緯度" + location.latitude)
+                    Log.d("debug","経度" + location.longitude)
                 }
             }
         }
