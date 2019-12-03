@@ -27,10 +27,9 @@ import com.google.android.gms.maps.model.MarkerOptions
 class MapsHome : FragmentActivity(), OnMapReadyCallback {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private var toast: Toast? = null //デバック用
     private var mMap: GoogleMap? = null
-    private val locationRequest = null
     private val requestingLocationUpdates = true //フラグ
+    private val locationRequest :LocationRequest = LocationRequest.create()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -56,8 +55,7 @@ class MapsHome : FragmentActivity(), OnMapReadyCallback {
         mapFragment!!.getMapAsync(this)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        //val locationRequest = LocationRequest()
-        val locationRequest = LocationRequest.create()
+
         locationRequest.setInterval(10000)   //最遅の更新間隔
         locationRequest.setFastestInterval(5000)   //最速の更新間隔
         locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)           //バッテリー消費を抑えたい場合、精度は100m程度
