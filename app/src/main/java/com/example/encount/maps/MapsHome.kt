@@ -9,6 +9,7 @@ import android.location.Location
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toast
 import com.example.encount.R
@@ -42,6 +43,8 @@ class MapsHome : FragmentActivity(), OnMapReadyCallback {
         //画面遷移用
         val menuHomeBtn = findViewById<LinearLayout>(R.id.MenuHome)
         val menuUserBtn = findViewById<LinearLayout>(R.id.MenuUser)
+
+        val spotInfo = findViewById<Button>(R.id.button2)
 
         // Android 6, API 23以上でパーミッションの確認
         if (Build.VERSION.SDK_INT >= 23) {
@@ -81,6 +84,11 @@ class MapsHome : FragmentActivity(), OnMapReadyCallback {
         menuHomeBtn.setOnClickListener {
 
             startActivity(Intent(this, UserHome::class.java))
+            overridePendingTransition(0, 0)
+        }
+
+        spotInfo.setOnClickListener {
+            startActivity(Intent(this, SpotInfo::class.java))
             overridePendingTransition(0, 0)
         }
 
