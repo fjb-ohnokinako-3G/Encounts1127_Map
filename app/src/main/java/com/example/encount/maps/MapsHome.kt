@@ -76,7 +76,8 @@ class MapsHome : FragmentActivity(), OnMapReadyCallback {
         }
         onResume()
     }
-    //反応なし
+
+    //Update Result
     val locationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult?) {
             locationResult ?: return
@@ -150,7 +151,6 @@ class MapsHome : FragmentActivity(), OnMapReadyCallback {
     }
 
     companion object {
-
         private val REQUEST_CODE = 1000
         private val REQUEST_PERMISSION = 1000
     }
