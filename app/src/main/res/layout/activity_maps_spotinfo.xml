@@ -78,7 +78,7 @@
             android:clickable="true">
 
             <TextView
-                android:id="@+id/UserPostCount"
+                android:id="@+id/SpotPopularCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -93,7 +93,7 @@
                 android:textSize="10sp" />
 
             <View
-                android:id="@+id/PostLine"
+                android:id="@+id/PopularLine"
                 android:layout_width="30dp"
                 android:layout_height="3dp"
                 android:visibility="visible"
@@ -101,7 +101,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/UserLike"
+            android:id="@+id/SpotNew"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -111,7 +111,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/UserLikeCount"
+                android:id="@+id/SpotNewCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -126,7 +126,7 @@
                 android:textSize="10sp" />
 
             <View
-                android:id="@+id/LikeLine"
+                android:id="@+id/NewLine"
                 android:layout_width="30dp"
                 android:layout_height="3dp"
                 android:visibility="visible"
