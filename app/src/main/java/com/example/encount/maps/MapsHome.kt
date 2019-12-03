@@ -39,6 +39,17 @@ class MapsHome : FragmentActivity(), OnMapReadyCallback {
         //画面遷移用
         val menuHomeBtn = findViewById<LinearLayout>(R.id.MenuHome)
         val menuUserBtn = findViewById<LinearLayout>(R.id.MenuUser)
+        //メニューバーを押した場合の処理
+        menuUserBtn.setOnClickListener {
+            startActivity(Intent(this, UserProfile::class.java))
+            overridePendingTransition(0, 0)
+        }
+
+        menuHomeBtn.setOnClickListener {
+
+            startActivity(Intent(this, UserHome::class.java))
+            overridePendingTransition(0, 0)
+        }
 
         // Android 6, API 23以上でパーミッションの確認
         if (Build.VERSION.SDK_INT >= 23) {
@@ -49,31 +60,14 @@ class MapsHome : FragmentActivity(), OnMapReadyCallback {
             checkPermission(permissions, REQUEST_CODE)
         }
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment!!.getMapAsync(this)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
         locationRequest.setInterval(10000)   //最遅の更新間隔
         locationRequest.setFastestInterval(5000)   //最速の更新間隔
         locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)           //バッテリー消費を抑えたい場合、精度は100m程度
-
-
-
-        //メニューバーを押した場合の処理
-        menuUserBtn.setOnClickListener {
-
-            startActivity(Intent(this, UserProfile::class.java))
-            overridePendingTransition(0, 0)
-        }
-
-        menuHomeBtn.setOnClickListener {
-
-            startActivity(Intent(this, UserHome::class.java))
-            overridePendingTransition(0, 0)
-        }
         onResume()
     }
 
@@ -109,6 +103,7 @@ class MapsHome : FragmentActivity(), OnMapReadyCallback {
         fusedLocationClient.removeLocationUpdates(locationCallback)
     }
 
+    //default location
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         val spot = LatLng(35.7044997, 139.9843911)
