@@ -18,11 +18,17 @@ limitations under the License.
 //AndroidX
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.encount.R;
+import com.example.encount.post.UserHome;
+import com.example.encount.user.UserProfile;
 
 //import android.support.v7.app.AppCompatActivity;
 
@@ -39,6 +45,10 @@ public class SpotMainActivity extends AppCompatActivity {
     private static final String[] photos = {
             "5ddb4b39131fd", "1896915185_5de706dbed01f",
             "1697161281_5ddc933768fec","1858530768_5de645e06b5d7",
+            "1858530768_5de645e06b5d7","1858530768_5de645e06b5d7",
+            "1858530768_5de645e06b5d7","1858530768_5de645e06b5d7",
+            "1858530768_5de645e06b5d7","1858530768_5de645e06b5d7",
+            "1858530768_5de645e06b5d7","1858530768_5de645e06b5d7",
     };
 
     @Override
@@ -58,5 +68,10 @@ public class SpotMainActivity extends AppCompatActivity {
         // gridViewにadapterをセット
         gridview.setAdapter(adapter);
 
+        //画面遷移用
+        LinearLayout menuHomeBtn = findViewById(R.id.MenuHome);
+        LinearLayout menuUserBtn = findViewById(R.id.MenuUser);
+        LinearLayout SpotPopular = findViewById(R.id.SpotPopular);
     }
+
 }
