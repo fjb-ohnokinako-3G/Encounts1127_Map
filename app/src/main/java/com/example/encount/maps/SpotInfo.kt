@@ -43,6 +43,5 @@ class SpotInfo  : AppCompatActivity() {
             startActivity(Intent(this, UserProfile::class.java))
             overridePendingTransition(0, 0)
         }
-
     }
 }

@@ -41,6 +41,7 @@ class MapsHome : FragmentActivity(), OnMapReadyCallback {
         val menuHomeBtn = findViewById<LinearLayout>(R.id.MenuHome)
         val menuUserBtn = findViewById<LinearLayout>(R.id.MenuUser)
         val spotInfoBtn = findViewById<Button>(R.id.button2)
+        val spotInfoBtn2 = findViewById<Button>(R.id.button3)
 
         //メニューバーを押した場合の処理
         menuUserBtn.setOnClickListener {
@@ -57,6 +58,12 @@ class MapsHome : FragmentActivity(), OnMapReadyCallback {
         spotInfoBtn.setOnClickListener {
 
             startActivity(Intent(this, SpotInfo::class.java))
+            overridePendingTransition(0, 0)
+        }
+
+        spotInfoBtn2.setOnClickListener {
+
+            startActivity(Intent(this, SpotMainActivity::class.java))
             overridePendingTransition(0, 0)
         }
 
