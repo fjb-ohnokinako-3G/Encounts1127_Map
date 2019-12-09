@@ -34,14 +34,6 @@ import com.example.encount.user.UserProfile;
 
 public class SpotMainActivity extends AppCompatActivity {
 
-    /*private static final String[] photos = {
-            "default", "default2",
-            "default3","default4",
-            "default5","default6",
-            "default7", "default8",
-            "default9", "default10",
-    };*/
-
     private static final String[] photos = {
             "5ddb4b39131fd", "1896915185_5de706dbed01f",
             "1697161281_5ddc933768fec","1858530768_5de645e06b5d7",
