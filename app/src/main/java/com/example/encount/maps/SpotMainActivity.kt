@@ -30,6 +30,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.encount.R
 import com.example.encount.post.UserHome
 import com.example.encount.user.UserProfile
+import okhttp3.FormBody
+import okhttp3.OkHttpClient
 
 //import android.support.v7.app.AppCompatActivity;
 
@@ -76,5 +78,20 @@ class SpotMainActivity : AppCompatActivity() {
         )
     }
 
+    private inner class SpotPhotoGet() : AsyncTask<String, String, String>(){
+        override fun doInBackground(vararg params: String?): String {
+            val client = OkHttpClient()
+
+            //アクセスするURL
+            val url = "https://kinako.cf/encount/UserPostGet.php"
+
+            //Formを作成
+            val formBuilder = FormBody.Builder()
+
+
+
+            return "a"
+        }
+    }
 
 }
