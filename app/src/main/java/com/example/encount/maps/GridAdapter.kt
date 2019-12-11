@@ -20,6 +20,11 @@ import java.util.Locale
 
 import android.content.Context.WINDOW_SERVICE
 
+/**
+ * スポット詳細画面に表示するGridView
+ *
+ * 制作者：宍倉
+ */
 
 class GridAdapter internal constructor(
     private val context: Context,

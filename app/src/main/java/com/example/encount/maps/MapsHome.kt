@@ -25,6 +25,12 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
+/**
+ * マップ機能のホーム画面
+ *
+ * 制作者：宍倉
+ */
+
 class MapsHome : FragmentActivity(), OnMapReadyCallback {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
